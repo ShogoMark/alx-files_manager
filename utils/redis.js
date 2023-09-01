@@ -1,9 +1,13 @@
 const redis = require('redis');
+const util = require('util');
 
 
 class RedisClient {
   constructor() {
     this.client = redis.createClient();
+    this.getAsync = util.promisify(this.client.get).bind(this.client);
+    this.setAsync = util.promisify(this.client.set).bind(this.client);
+    this.delAsync = util.promisify(this.client.del).bind(this.client); 
 
     // initialize a flag to track the connection status	  
     this.isConnected = false;
@@ -18,6 +22,7 @@ class RedisClient {
     this.client.on('connect', () => {
       this.isConnected = true;
     });
+
 
   isAlive() {
     return this.isConnected;
@@ -52,4 +57,6 @@ class RedisClient {
  }
 }
 
-redisClient = RedisClient()
+const redisClient = new RedisClient();
+
+module.exports = redisClient;
