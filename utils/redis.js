@@ -7,7 +7,7 @@ class RedisClient {
     this.client = redis.createClient();
      
     // Initialize a flag to track the connection status based on the client's status
-    this.isConnected = this.client.connected;
+    this.isConnected = true;
 
     this.getAsync = util.promisify(this.client.get).bind(this.client);
     this.setAsync = util.promisify(this.client.set).bind(this.client);
@@ -15,24 +15,19 @@ class RedisClient {
 
     // handle redis client errors
     this.client.on('error', (error) => {
-      console.error(error);
+      console.error('Redis client failed to connect:', error.message || error.toString());
       this.isConnected = false;
     });
 
     // set up handler for when connection is established
-    this.connectPromise = new Promise((resolve) => {
       this.client.on('connect', () => {
       console.log('Redis Connected Successfully!')
       this.isConnected = true;
-      resolve();
-
-    });
     });
   }
 
   async isAlive() {
     // Ensure that the connection is established before checking the status
-    await this.connectPromise;
     return this.isConnected;
   }
 
