@@ -28,7 +28,6 @@ This kind of service already exists in the real life - it’s a learning purpose
 * Redis
 
 ## Learning Objectives 
-At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 
 - how to create an API with Express
 - how to authenticate a user
@@ -39,11 +38,12 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 ## Requirements
 
 Allowed editors: vi, vim, emacs, Visual Studio Code
+
 All your files will be interpreted/compiled on Ubuntu 18.04 LTS using node (version 12.x.x)
-All your files should end with a new line
-A README.md file, at the root of the folder of the project, is mandatory
-Your code should use the js extension
-Your code will be verified against lint using ESLint
+All files should end with a new line
+A README.md file, at the root of the folder of the project
+code should use the js extension
+code will be verified against lint using ESLint
 
 ## Contributors
 - [Olusegun Emmanuel](https://github.com/CodewithSegNet)
