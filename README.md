@@ -11,9 +11,7 @@ This project is a summary of this back-end trimester: authentication, NodeJS, Mo
 * View a file
 * Generate thumbnails for images
 
-You will be guided step by step for building it, but you have some freedoms of implementation, split in more files etc… (`utils` folder will be your friend)
-
-Of course, this kind of service already exists in the real life - it’s a learning purpose to assemble each piece and build a full product.
+This kind of service already exists in the real life - it’s a learning purpose to assemble each piece and build a full product.
 
 ## Resources
 - Read or watch:
