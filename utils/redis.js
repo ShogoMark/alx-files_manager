@@ -1,30 +1,38 @@
 const redis = require('redis');
 const util = require('util');
 
-
 class RedisClient {
   constructor() {
+    // Create the redis client
     this.client = redis.createClient();
+     
+    // Initialize a flag to track the connection status based on the client's status
+    this.isConnected = this.client.connected;
+
     this.getAsync = util.promisify(this.client.get).bind(this.client);
     this.setAsync = util.promisify(this.client.set).bind(this.client);
-    this.delAsync = util.promisify(this.client.del).bind(this.client); 
+    this.delAsync = util.promisify(this.client.del).bind(this.client);
 
-    // initialize a flag to track the connection status	  
-    this.isConnected = false;
-   
-    // handle redis client errors	  
+    // handle redis client errors
     this.client.on('error', (error) => {
       console.error(error);
       this.isConnected = false;
     });
 
     // set up handler for when connection is established
-    this.client.on('connect', () => {
+    this.connectPromise = new Promise((resolve) => {
+      this.client.on('connect', () => {
+      console.log('Redis Connected Successfully!')
       this.isConnected = true;
+      resolve();
+
     });
+    });
+  }
 
-
-  isAlive() {
+  async isAlive() {
+    // Ensure that the connection is established before checking the status
+    await this.connectPromise;
     return this.isConnected;
   }
 
@@ -46,15 +54,15 @@ class RedisClient {
       console.error(error);
       throw error;
     }
- }
+  }
 
   async del(key) {
-  try {
-    await this.del(key);
-  } catch (error) {
-    console.error(error);
+    try {
+      await this.delAsync(key); // Corrected this line
+    } catch (error) {
+      console.error(error);
+    }
   }
- }
 }
 
 const redisClient = new RedisClient();
