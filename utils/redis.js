@@ -6,7 +6,8 @@ class RedisClient {
     // Create the redis client
     this.client = redis.createClient();
 
-    // Initialize a flag to track the connection status based on the client's status
+    // Initialize a flag to track the connection
+    // status based on the client's status
     this.isConnected = true;
 
     this.getAsync = util.promisify(this.client.get).bind(this.client);
@@ -27,7 +28,8 @@ class RedisClient {
   }
 
   async isAlive() {
-    // Ensure that the connection is established before checking the status
+    // Ensure that the connection is established
+    // before checking the status
     return this.isConnected;
   }
 
@@ -53,7 +55,7 @@ class RedisClient {
 
   async del(key) {
     try {
-      await this.delAsync(key); // Corrected this line
+      await this.delAsync(key);
     } catch (error) {
       console.error(error);
     }
