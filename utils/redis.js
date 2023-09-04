@@ -5,7 +5,7 @@ class RedisClient {
   constructor() {
     // Create the redis client
     this.client = redis.createClient();
-     
+
     // Initialize a flag to track the connection status based on the client's status
     this.isConnected = true;
 
@@ -20,8 +20,8 @@ class RedisClient {
     });
 
     // set up handler for when connection is established
-      this.client.on('connect', () => {
-      console.log('Redis Connected Successfully!')
+    this.client.on('connect', () => {
+      console.log('Redis Connected Successfully!');
       this.isConnected = true;
     });
   }
