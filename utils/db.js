@@ -39,10 +39,9 @@ class DBClient {
         const usersCollection = this.client.db().collection('users');
         const count = await usersCollection.countDocuments();
         return count;
-      } else {
-        console.error('Not connected to MongoDB');
-        return 0;
       }
+      console.error('Not connected to MongoDB');
+      return 0;
     } catch (error) {
       console.error('Error counting users:', error);
       return 0;
@@ -55,10 +54,9 @@ class DBClient {
         const filesCollection = this.client.db().collection('files');
         const count = await filesCollection.countDocuments();
         return count;
-      } else {
-        console.error('Not connected to MongoDB');
-        return 0;
       }
+      console.error('Not connected to MongoDB');
+      return 0;
     } catch (error) {
       console.error('Error counting files:', error);
       return 0;
