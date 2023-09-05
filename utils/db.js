@@ -30,11 +30,7 @@ class DBClient {
   }
 
   async isAlive() {
-    const isConnected = await dbClient.client.isConnected();
     return this.isConnected;
-  }catch (error) {
-   console.error('Error checking MongoDB connection:', error);
-   return false
   }
 
   async nbUsers() {
