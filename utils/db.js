@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 
+// A class that Creates the client to MongoDB
 class DBClient {
   constructor() {
     // Use environment variables or default values
